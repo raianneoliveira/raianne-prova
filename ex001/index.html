@@ -9,33 +9,48 @@
 <body>
     <main>
         <h1>quanto custa um carro</h1>
-        <form action="salvar.php" method="get" onsubmit="return fun()">
+        <form action="salvar.php" method="get" onsubmit="return fin()">
             <label for="madara">Qual e o modelo do carro</label>
-            <input type="text" name="madara" id="madara"><br>
+            <input type="text" name="valor" id="valor"><br>
 
-            <label for="giyuu"> qual eo preço total</label>
-            <input type="number" name="giyuu" id="giyuu">
+            <label for="giyuu"> Qual é o preço total</label>
+            <input type="number" name="preço" id="preço" min="1000" value="10000">
 
-            <br><label for="gato">quantidade de parcelas para pagar</label>
-            <select name="gato" id="gato">
+            <br><label for="gato">quantidade de parcelas para pagar:</label>
+            <input type="number" name="parcela" id="parcela" min="1" max="36" value="1">
 
-            <input type="number" name="gato" id="gato">
-            <section id="resultado inesperado"></section>
-            <p id="resultado inesperado"></p>
-            <input type="button" value="total">
-            </form>
+            <input type="submit" value="INICIAR">
+            <p id="resultado"></p>
+            
+        </form>
             <main>
                 <script>
-                let result = document.getElementById("valor") 
-                function valor()
-                let modelo = document.getElementById("valor")
-                let preço = document .getElementById (preço)
-                let parcelas = document.getElementById ("parcela")
-                if (parcelas <= 4)
-                
+                    let result = document.getElementById("resultado") 
+                    function fin() {
+                    let modelo = document.getElementById("valor").value
+                    let preço = Number(document.getElementById("preço").value)
+                    let parcelas = Number(document.getElementById("parcela").value)
 
-
-                </script>
+                    if (parcelas <= 4) {
+                        let vpar = preço / parcelas
+                        result.innerHTML = `O modelo ${modelo} terá seu preço mantido a ${preço} e cada parcela custará ${vpar}`
+                    } else if (parcelas <=12) {
+                        let juros1 = preço + (25/100 * preço)
+                        let vpar = juros1 / parcelas
+                        result.innerHTML = `O modelo ${modelo} terá juros de 25% e custará ${juros1} e cada parcela custará ${vpar}`
+                    } else if (parcelas <=24) {
+                        let juros2 = preço + (60/100 * preço)
+                        let vpar = juros2 / parcelas
+                        result.innerHTML = `O modelo ${modelo} terá juros de 60% e custará ${juros2} e cada parcela custará ${vpar}`
+                    } else if (parcelas <= 36) {
+                        let juros3 = preço + (80/100 * preço)
+                        let vpar = juros3 / parcelas
+                        result.innerHTML = `O modelo ${modelo} terá juros de 80% e custará ${juros3} e cada parcela custará ${vpar}`
+                    }
+                    
+                    return false
+                }
+                    </script>
 
             </main>
 
